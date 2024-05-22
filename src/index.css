@@ -12,6 +12,7 @@
   background-color: #242424;
   background-image: url('/background.jpg');
   background-size: cover;
+  overflow: hidden;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,7 +36,6 @@ body {
 .main-content {
   background: radial-gradient(ellipse, rgba(0,0,0,0.25) 0%, rgba(255,255,255,0) 75%);  
   padding: 50px; 
-  /* border-radius: 100px;  */
 }
 
 .main-clock {
