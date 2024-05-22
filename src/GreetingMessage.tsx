@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function GreetingMessage() {
     const [time, setTime] = useState(getCurrentTime());
-    const [name, setName] = useState('Ricky');
+    const [name, setName] = useState(() => {
+        const storedName = localStorage.getItem('userName');
+        return storedName || 'User'; // sets user as default name
+    });
     const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+        localStorage.setItem('userName', name);
+    }, [name]);
 
     function getCurrentTime() {
         const date = new Date();
@@ -35,7 +42,7 @@ function GreetingMessage() {
 
     function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
-            setIsEditing(false); // Exit editing mode
+            setIsEditing(false);
         }
     }
 
