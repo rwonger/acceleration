@@ -1,13 +1,20 @@
-import { useState } from 'react'
 import './App.css'
+import Clock from './Clock'
+import bg from '/public/background.jpg'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <p className=' font-extrabold text-sky-500'>testing if tailwind works yippee</p>
-    </>
+  
+      // <div className='container' style={{ backgroundImage: `url(${bg})` }}>
+        <div className='main-content font-semibold text-slate-100'>
+          <div className='main-clock'>
+            <Clock />
+          </div>
+          <h2 className='greeting'>Good afternoon, Ricky</h2>
+        </div>
+      // </div>
+    
   )
 }
 
