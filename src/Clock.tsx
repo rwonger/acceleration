@@ -27,7 +27,13 @@ function Clock() {
     }
 
     function formatHours(val: number) {
-        return val > 12 ? val - 12 : val;
+        if (val > 12) {
+            return val - 12;
+        } else if (val == 0) {
+            return 12;
+        } else {
+            return val;
+        }
     }
 
     return (
