@@ -1,15 +1,17 @@
+import { useState } from 'react'
 import './App.css'
-import Clock from './Clock'
-import GreetingMessage from './GreetingMessage'
+import Startup from './Startup';
+import MainContent from './MainContent';
 
 function App() {
+  const [isStartup, setIsStartup] = useState(true);
+  const handleComplete = () => {
+    setIsStartup(false);
+  }
 
   return (
-    <div className='main-content font-semibold text-slate-100'>
-      <div className='main-clock mb-1'>
-        <Clock />
-      </div>
-      <GreetingMessage />
+    <div>
+      {isStartup ? <Startup onComplete={handleComplete} /> : <MainContent />}
     </div>
   )
 }

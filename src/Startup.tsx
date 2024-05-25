@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import App from "./App";
+import { useState } from "react";
+import MainContent from "./MainContent";
 
 
-function Startup() {
+function Startup({ onComplete }) {
+    localStorage.clear();
+
     const [isNewUser, setIsNewUser] = useState(() => {
         return !localStorage.getItem("userName");
     })
@@ -13,21 +15,16 @@ function Startup() {
 
     const [inputVal, setInputVal] = useState(name)
 
-    useEffect(() => {
-        localStorage.setItem('userName', name);
-    }, [name]);
-
-    localStorage.clear();
-
-
     function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
         setInputVal(e.target.value);
     }
 
 
     function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.key === 'Enter') {
-            setName(inputVal);
+        if (e.key === 'Enter') 
+            {
+            localStorage.setItem('userName', inputVal);
+            onComplete();
         }
     }
 
@@ -51,14 +48,12 @@ function Startup() {
                 <div className='greeting main-content font-semibold text-slate-100'>
                     Hey there, what's your name?
                     <div>
-                        <h2>
-                            {handleNameRender()}
-                        </h2>
+                        <h2> {handleNameRender()}</h2>
                     </div>
                 </div>
             ) : (
                 <div>
-                    <App />
+                    <MainContent />
                 </div>
             )}
         </div>
