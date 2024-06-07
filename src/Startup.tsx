@@ -1,45 +1,27 @@
-import { useState } from "react";
-import MainContent from "./MainContent";
-
-
-function Startup({ onComplete }) {
-    localStorage.clear();
-
-    const isNewUser = !localStorage.getItem("userName");
-
-    const [inputVal, setInputVal] = useState(() => {
-        return localStorage.getItem('userName') || "";
-    })
-
-
-    function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setInputVal(e.target.value);
-    }
-
-
-    function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.key === 'Enter') {
-            localStorage.setItem('userName', inputVal);
-            onComplete();
-        }
-    }
-
+function Startup({ onComplete, setUsername, username }) {
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setUsername(e.target.value);
+    };
+  
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        onComplete();
+      }
+    };
+  
     return (
-        <div>
-            {isNewUser ? (
-                <div className='greeting main-content font-semibold text-slate-100'>
-                    Hey there, what's your name?
-                    <input
-                        className="nameInput startup"
-                        type="text"
-                        value={inputVal}
-                        onChange={handleNameChange}
-                        onKeyDown={handleKeyPress}
-                        autoFocus
-                    />
-                </div>) : (<MainContent />)}
-        </div>
-    )
-}
+      <div className='greeting main-content font-semibold text-slate-100'>
+        <h1>Hey there, what's your name?</h1>
+        <input
+          className="nameInput startup"
+          type="text"
+          value={username}
+          onChange={handleNameChange}
+          onKeyDown={handleKeyPress}
+          autoFocus
+        />
+      </div>
+    );
+  }
 
 export default Startup;

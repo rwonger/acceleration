@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-function GreetingMessage() {
+function GreetingMessage( {username} ) {
     const [time, setTime] = useState(getCurrentTime());
     const [name, setName] = useState(() => {
-        const storedName = localStorage.getItem('userName');
-        return storedName || 'user'; // sets user as default name
+        return localStorage.getItem('userName') || username;
     });
     const [isEditing, setIsEditing] = useState(false);
 
