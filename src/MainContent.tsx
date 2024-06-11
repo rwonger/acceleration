@@ -1,16 +1,15 @@
 import Clock from "./Clock"
 import GreetingMessage from "./GreetingMessage"
-import Fade from "./anim/Fade";
+import WeatherComponent from "./WeatherComponent";
 function MainContent({ username }) {
   return (
-    <Fade in={true}>
       <div className='main-content font-semibold text-slate-100'>
         <div className='main-clock mb-1'>
           <Clock />
         </div>
         <GreetingMessage username={username} />
+        <WeatherComponent />
       </div>
-    </Fade>
   );
 }
 
