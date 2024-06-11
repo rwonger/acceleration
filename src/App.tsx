@@ -5,7 +5,7 @@ import MainContent from './MainContent';
 import Fade from './anim/Fade';
 
 function App() {
-  localStorage.clear();
+  // localStorage.clear();
 
   const [newUser, setNewUser] = useState(!localStorage.getItem("userName"));
   const [username, setUsername] = useState(() => localStorage.getItem('userName') || "");
