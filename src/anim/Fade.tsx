@@ -9,7 +9,7 @@ const Fade = ({ in: inProp, children, timeout = 1000, classNames = 'fade' }) => 
         classNames={classNames}
         unmountOnExit
       >
-        <div>
+        <div className='container'>
           {children}
         </div>
       </CSSTransition>

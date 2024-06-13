@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import Startup from './Startup';
 import MainContent from './MainContent';
 import Fade from './anim/Fade';
@@ -24,7 +23,7 @@ function App() {
   }, [buffer, newUser, username]);
 
   return (
-    <div className='text-slate-100'>
+    <div className='container'>
       <Fade in={newUser}>
         <Startup onComplete={() => {setNewUser(false); setBuffer(1000)}} setUsername={setUsername} username={username} />
       </Fade>
