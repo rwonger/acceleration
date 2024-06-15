@@ -13,7 +13,7 @@ function MainContent({ username }) {
         <GreetingMessage username={username} />
       </div>
       <div className='spacer'></div>
-      <div className='footer'>footer</div>
+      <div className='footer'>SETTINGS!!!</div>
     </>
 
   );

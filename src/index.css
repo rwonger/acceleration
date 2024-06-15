@@ -54,7 +54,7 @@ html, body, #root {
   display: flex;
   justify-content: flex-end;
   padding: 10px;
-  background-color: #333;
+  /* background-color: #333; */
 }
 
 .spacer {
@@ -75,7 +75,11 @@ html, body, #root {
   width: 100%;
   display: flex;
   padding: 10px;
-  background-color: #333;
+  /* background-color: #333; */
+}
+
+.shad {
+  background: radial-gradient(ellipse, rgba(0,0,0,0.25) 0%, rgba(255,255,255,0) 75%);  
 }
 
 .nameInput {
@@ -105,5 +109,16 @@ html, body, #root {
 .greeting {
   font-size: 3em;
 }
+
+.weather {
+  font-size: 2em;
+  justify-content: flex-end;
+  align-items: end;
+}
+
+.weather.summary {
+  font-size: 1.3em;
+}
+
 
 
