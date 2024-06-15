@@ -1,6 +1,7 @@
 import Clock from "./Clock"
 import GreetingMessage from "./GreetingMessage"
 import WeatherComponent from "./WeatherComponent";
+import Settings from "./Settings";
 function MainContent({ username }) {
   return (
     <>
@@ -11,9 +12,11 @@ function MainContent({ username }) {
           <Clock />
         </div>
         <GreetingMessage username={username} />
+
       </div>
       <div className='spacer'></div>
-      <div className='footer'>SETTINGS!!!</div>
+      <div className='footer'>        <Settings />
+      </div>
     </>
 
   );
