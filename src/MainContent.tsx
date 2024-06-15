@@ -4,7 +4,7 @@ import WeatherComponent from "./WeatherComponent";
 function MainContent({ username }) {
   return (
     <>
-      <div className='header'>     <WeatherComponent />      asd</div>
+      <div className='header'><WeatherComponent /></div>
       <div className='spacer'></div>
       <div className='main-content font-semibold text-slate-100'>
         <div className='main-clock mb-1'>
