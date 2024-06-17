@@ -1,15 +1,11 @@
 import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react'
-import { Cog6ToothIcon } from '@heroicons/react/20/solid'
-import {
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-
-} from '@heroicons/react/24/outline'
 import { useState } from 'react';
 
 const solutions = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
+  { name: 'Change Time Format', description: 'Switch between 12h and 24h time format', href: '#', },
+  { name: 'Change Background Image', description: 'Upload your own background image', href: '#',},
+  { name: 'Change Weather Location', description: 'Adjust your weather location manually', href: '#',},
+  { name: 'Clear Local Storage', description: 'Perform a full reset of Acceleration', href: '#',},
 
 ]
 
@@ -22,16 +18,10 @@ export default function Settings() {
       <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-slate-200 focus:outline-none" 
         onClick={() => setIsOpen(!isOpen)}
       >
-        <i className={`h-6 w-6 m-2 transition material-symbols-outlined icon${
-            isOpen ? 'text-gray-400 rotate-45' : 'text-slate-200'
+        <i className={`h-6 w-6 m-2 transition material-symbols-rounded icon${
+            isOpen ? 'text-gray-800 rotate-45' : 'text-slate-200'
           }`} 
           aria-hidden="true">settings</i>
-        <Cog6ToothIcon 
-          className={`h-6 w-6 m-2 transition ${
-            isOpen ? 'text-gray-400 rotate-45' : 'text-slate-200'
-          }`} 
-          aria-hidden="true" 
-        />
       </PopoverButton>
 
       <Transition
@@ -47,10 +37,7 @@ export default function Settings() {
           <div className="w-screen max-w-md flex-auto overflow-hidden rounded-2xl bg-black bg-opacity-80 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
               {solutions.map((item) => (
-                <div key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                  <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <item.icon className="h-6 w-6 text-slate-600 group-hover:text-indigo-600" aria-hidden="true" />
-                  </div>
+                <div key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-900">
                   <div>
                     <a href={item.href} className="font-semibold text-slate-200">
                       {item.name}

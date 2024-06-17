@@ -44,7 +44,7 @@ function WeatherComponent() {
         <div>
             <div className='flex-col shad pb-4 m-2'>
                 <div className='flex weather'>
-                    <i className="material-symbols-outlined icon">{getWeatherIcon(weatherData.currently.icon)}</i>
+                    <i className="material-symbols-outlined weatherIcon">{getWeatherIcon(weatherData.currently.icon)}</i>
                     <h1>{Math.round(weatherData.currently.apparentTemperature)}°C</h1>
                 </div>
                 <p className='weather summary flex'>{weatherData.currently.summary}</p>
