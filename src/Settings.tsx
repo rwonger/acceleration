@@ -34,18 +34,17 @@ export default function Settings() {
         afterLeave={() => setIsOpen(false)}
       >
         <PopoverPanel className="absolute left-2 z-10 flex w-screen max-w-max bottom-full ">
-          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-2xl bg-black bg-opacity-80 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+          <div className="w-screen max-w-96 flex-auto overflow-hidden rounded-2xl bg-black bg-opacity-80 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
               {solutions.map((item) => (
-                <div key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-900">
+                <button key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-900 text-left w-full">
                   <div>
-                    <a href={item.href} className="font-semibold text-slate-200">
-                      {item.name}
-                      <span className="absolute inset-0" />
-                    </a>
+                    {item.name}
+                      {/* <span className="absolute inset-0" /> */}
+                  
                     <p className="mt-1 text-slate-300">{item.description}</p>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
