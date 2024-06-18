@@ -1,23 +1,54 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import weatherBackup from './temp.json';
 
 function WeatherComponent() {
     const [weatherData, setWeatherData] = useState(weatherBackup);
-    const LOCATION = import.meta.env.VITE_LATITUDE_LONGITUDE; // "{latitude},{longitude}"
+    const [location, setLocation] = useState("");
     const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+    const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
-    const fetchWeather = async () => {
-        try {
-            const response = await fetch(`https://api.pirateweather.net/forecast/${API_KEY}/${LOCATION}?units=ca`);
-            if (!response.ok) {
-                throw new Error('Error fetching weather data');
-            }
-            const data = await response.json();
-            setWeatherData(data);
-        } catch (Error) {
-            console.log(Error);
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            setLocation(`${position.coords.latitude},${position.coords.longitude}`);
+        }, (error) => {
+            console.log(error);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (location) {
+            const fetchWeather = async () => {
+                try {
+                    const cachedWeather = localStorage.getItem('weatherData');
+                    const cachedTimestamp = localStorage.getItem('weatherDataTimestamp');
+                    const now = new Date().getTime();
+
+                    // uses cached weather data within cached time duration instead of making new api call every reload
+                    if (cachedWeather && cachedTimestamp && now - parseInt(cachedTimestamp, 10) < CACHE_DURATION) {
+                        setWeatherData(JSON.parse(cachedWeather));
+                    } else {
+                        const response = await fetch(`https://api.pirateweather.net/forecast/${API_KEY}/${location}?units=ca`);
+                        if (!response.ok) {
+                            throw new Error('Error fetching weather data');
+                        }
+                        const data = await response.json();
+                        
+                        // displays alert if weather data is not returned properly
+                        if ('statusCode' in data) {
+                            alert('Please enable locational services for weather services to work :(')
+                        } else {
+                            setWeatherData(data);
+                            localStorage.setItem('weatherData', JSON.stringify(data));
+                            localStorage.setItem('weatherDataTimestamp', now.toString());
+                        }
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            fetchWeather();
         }
-    };
+    }, [location, API_KEY, CACHE_DURATION]);
 
     const weatherIconMap: { [key: string]: string } = {
         'clear-day': 'clear_day',
@@ -38,18 +69,18 @@ function WeatherComponent() {
         return weatherIconMap[type] || 'sentiment_sad';
     }
 
-
-
     return (
         <div>
             <div className='flex-col shad pb-4 m-2'>
                 <div className='flex weather'>
                     <i className="material-symbols-outlined weatherIcon">{getWeatherIcon(weatherData.currently.icon)}</i>
-                    <h1>{Math.round(weatherData.currently.apparentTemperature)}°C</h1>
+                    <h1>{Math.round(weatherData.currently.temperature)}°C</h1>
                 </div>
                 <p className='weather summary flex'>{weatherData.currently.summary}</p>
+                <p className=''>{weatherData.timezone}</p>
+
             </div>
-            <button onClick={fetchWeather}>Refresh Weather</button>
+            {/* <button onClick={() => setLocation(location)}>Refresh Weather</button> */}
         </div>
     );
 }

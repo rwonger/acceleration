@@ -2,7 +2,6 @@ import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/re
 import { useState } from 'react';
 
 const solutions = [
-  { name: 'Change Time Format', description: 'Switch between 12h and 24h time format', href: '#',  },
   { name: 'Change Background Image', description: 'Upload your own background image', href: '#',},
   { name: 'Change Weather Location', description: 'Adjust your weather location manually', href: '#',},
   { name: 'Clear Local Storage', description: 'Perform a full reset of Acceleration', href: '#',},
