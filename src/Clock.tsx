@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 
 function Clock() {
@@ -38,7 +38,7 @@ function Clock() {
 
     function formatHours(val: number) {
         if (is12HourFormat) {
-            return val;
+            return formatTime(val);
         }
         if (val > 12) {
             return val - 12;

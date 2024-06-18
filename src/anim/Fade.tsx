@@ -1,7 +1,14 @@
 import { CSSTransition } from 'react-transition-group';
 import "./fade.css";
 
-const Fade = ({ in: inProp, children, timeout = 1000, classNames = 'fade' }) => {
+interface FadeProps {
+  in: boolean;
+  timeout?: number;
+  classNames?: string;
+  children: React.ReactNode;
+}
+
+const Fade = ({ in: inProp, children, timeout = 1000, classNames = 'fade' }: FadeProps) => {
     return (
       <CSSTransition
         in={inProp}

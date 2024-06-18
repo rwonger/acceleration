@@ -2,7 +2,12 @@ import Clock from "./Clock"
 import GreetingMessage from "./GreetingMessage"
 import WeatherComponent from "./WeatherComponent";
 import Settings from "./Settings";
-function MainContent({ username }) {
+
+interface StartupProps {
+  username: string;
+}
+
+function MainContent({ username }: StartupProps) {
   return (
     <>
       <div className='header'><WeatherComponent /></div>

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-function GreetingMessage( {username} ) {
-    const [time, setTime] = useState(getCurrentTime());
+
+interface StartupProps {
+    username: string;
+  }
+  
+
+function GreetingMessage( {username}: StartupProps ) {
+    const [time] = useState(getCurrentTime());
     const [name, setName] = useState(() => {
         return localStorage.getItem('userName') || username;
     });
