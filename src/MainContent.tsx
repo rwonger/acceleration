@@ -8,6 +8,7 @@ interface StartupProps {
 }
 
 function MainContent({ username }: StartupProps) {
+
   return (
     <div className="container">
       <div className='header'><WeatherComponent /></div>

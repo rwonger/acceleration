@@ -23,22 +23,36 @@ function App() {
       const timer = setTimeout(() => {
         setShowStartup(true);
       }, 50);
-  
+
       return () => clearTimeout(timer);
     }
   }, [buffer, newUser, username]);
 
 
+  const defaultBackgroundImage = `./sarah-sheedy-wG26ifbU1ME-unsplash.jpg`;
+  const [backgroundImage, setBackgroundImage] = useState<string>(defaultBackgroundImage);
+  localStorage.setItem('backupImage', defaultBackgroundImage);
+
+  useEffect(() => {
+    const storedImage = localStorage.getItem('backgroundImage');
+    if (storedImage) {
+      setBackgroundImage(storedImage);
+    }
+  }, []);
+
+
   return (
     <div className='container'>
-     <div className="background-mask"></div>
+              <div className="background-mask"></div>
 
-      <Fade in={newUser && showStartup}>
-        <Startup onComplete={() => {setNewUser(false); setBuffer(1000)}} setUsername={setUsername} username={username} />
-      </Fade>
-      <Fade in={!newUser && showMainContent}>
+      <div className="container background" style={{ backgroundImage: `url(${backgroundImage})`}}>
+        <Fade in={newUser && showStartup}>
+          <Startup onComplete={() => { setNewUser(false); setBuffer(1000) }} setUsername={setUsername} username={username} />
+        </Fade>
+        <Fade in={!newUser && showMainContent}>
           <MainContent username={username} />
-      </Fade>
+        </Fade>
+      </div>
     </div>
   );
 }
