@@ -9,7 +9,7 @@ interface StartupProps {
 
 function MainContent({ username }: StartupProps) {
   return (
-    <>
+    <div className="container">
       <div className='header'><WeatherComponent /></div>
       <div className='spacer'></div>
       <div className='main-content font-semibold text-slate-100'>
@@ -22,7 +22,7 @@ function MainContent({ username }: StartupProps) {
       <div className='spacer'></div>
       <div className='footer'>        <Settings />
       </div>
-    </>
+    </div>
 
   );
 }

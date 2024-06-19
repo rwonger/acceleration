@@ -31,6 +31,8 @@ function App() {
 
   return (
     <div className='container'>
+     <div className="background-mask"></div>
+
       <Fade in={newUser && showStartup}>
         <Startup onComplete={() => {setNewUser(false); setBuffer(1000)}} setUsername={setUsername} username={username} />
       </Fade>

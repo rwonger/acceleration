@@ -2,9 +2,9 @@ import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/re
 import { useState } from 'react';
 
 const solutions = [
-  { name: 'Change Background Image', description: 'Upload your own background image', href: '#',},
+  { name: 'Change Background Image', description: 'Upload your own background image', id: 'change_bg',},
   { name: 'Change Weather Location', description: 'Adjust your weather location manually', href: '#',},
-  { name: 'Clear Local Storage', description: 'Perform a full reset of Acceleration', href: '#',},
+  { name: 'Clear Local Storage', description: 'Perform a full reset of Acceleration', id: 'reset',},
 
 ]
 
@@ -38,7 +38,7 @@ export default function Settings() {
               {solutions.map((item) => (
                 <button key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-white/15 text-left w-full"    
                 onClick={() => {
-                  if (item.name === 'Clear Local Storage') {
+                  if (item.id === 'reset') {
                     localStorage.clear();
                     window.location.reload();
                   }

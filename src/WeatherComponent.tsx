@@ -71,13 +71,13 @@ function WeatherComponent() {
 
     return (
         <div>
-            <div className='flex-col shad pb-4 m-2'>
+            <div className='flex-col pb-4 m-2'>
                 <div className='flex weather'>
-                    <i className="material-symbols-outlined weatherIcon">{getWeatherIcon(weatherData.currently.icon)}</i>
+                    <i className="material-symbols-outlined weatherIcon px-1">{getWeatherIcon(weatherData.currently.icon)}</i>
                     <h1>{Math.round(weatherData.currently.temperature)}°C</h1>
                 </div>
                 <p className='weather summary flex'>{weatherData.currently.summary}</p>
-                <p className=''>{weatherData.timezone}</p>
+                <p className='text-right text-base'>{weatherData.timezone.split('/')[1]}</p>
 
             </div>
             {/* <button onClick={() => setLocation(location)}>Refresh Weather</button> */}
