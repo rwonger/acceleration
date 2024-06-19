@@ -64,7 +64,7 @@ function GreetingMessage( {username}: StartupProps ) {
                     autoFocus 
                 />
             ) : (
-                <span className="hover:bg-black/25 rounded-2xl px-5 transition">{name}</span>
+                <span>{name}</span>
             )
         )
     }
